@@ -1,10 +1,12 @@
 import json
 import asyncio
 from langchain_ollama import OllamaEmbeddings
+from src.db.connection import PostgresConnection
 import sys
 import os
+
+
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from src.PostgresConnection import PostgresConnection
 
 
 async def main():
