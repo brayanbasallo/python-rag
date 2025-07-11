@@ -71,7 +71,7 @@ La API estará disponible en [http://localhost:8000](http://localhost:8000).
 
 ### Endpoints principales
 
-- `GET /chat`  
+- `POST /chat`  
   **Body:**  
   ```json
   {
@@ -85,7 +85,7 @@ La API estará disponible en [http://localhost:8000](http://localhost:8000).
   }
   ```
 
-- `GET /search`  
+- `POST /search`  
   **Body:**  
   ```json
   {
