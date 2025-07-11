@@ -35,6 +35,8 @@ Este proyecto implementa un sistema de chat y búsqueda de cursos usando RAG (Re
    ```bash
    pip install -r requirements.txt
    # O usando poetry/pdm si lo prefieres
+   # O usando uv
+   uv sync
    ```
 
 4. **Levanta la base de datos con pgvector**  
@@ -44,7 +46,7 @@ Este proyecto implementa un sistema de chat y búsqueda de cursos usando RAG (Re
 
 5. **Carga los datos de ejemplo**  
    ```bash
-   python src/scripts/create_data.py
+   uv run python -m src.scripts.create_data
    ```
 
 6. **Asegúrate de que Ollama esté corriendo**  
@@ -52,6 +54,7 @@ Este proyecto implementa un sistema de chat y búsqueda de cursos usando RAG (Re
    ollama serve
    # Y que tengas el modelo necesario descargado, por ejemplo:
    ollama pull gemma3n:e4b
+   # ollama pull nomic-embed-text
    ```
 
 7. **Configura las variables de entorno** (opcional, ver `src/utils/config.py` para los defaults)
