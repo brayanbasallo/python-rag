@@ -18,11 +18,11 @@ class SearchRequest(BaseModel):
     query: str
 
 
-@router.get('/chat')
+@router.post('/chat')
 def chat_endpoint(request: ChatRequest):
     return {"response": chat_service.get_response(request.messages)}
 
 
-@router.get('/search')
+@router.post('/search')
 def search_endpoint(request: SearchRequest):
     return {"results": search_service.search(request.query)}
