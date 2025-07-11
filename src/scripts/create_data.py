@@ -1,21 +1,22 @@
 import json
-import asyncio
 from langchain_ollama import OllamaEmbeddings
 from src.db.connection import PostgresConnection
-import sys
-import os
+from src.utils import config
 
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-
-
-async def main():
+def main():
     # Cargar cursos desde JSON
     with open("src/scripts/cources.json", "r", encoding="utf-8") as f:
         courses = json.load(f)
 
     # Crear conexión a PostgreSQL
-    pg_connection = PostgresConnection()
+    pg_connection = PostgresConnection(
+        host=config.DB_HOST,
+        database=config.DB_NAME,
+        user=config.DB_USER,
+        password=config.DB_PASSWORD,
+        port=config.DB_PORT
+    )
 
     # Crear generador de embeddings
     embeddings_generator = OllamaEmbeddings(
@@ -24,21 +25,21 @@ async def main():
 
     try:
         # Conectar a la base de datos
-        await pg_connection.connect_async()
+        pg_connection.connect()
 
         # Procesar cada curso
         for course in courses:
             # Generar embedding para el nombre del curso
-            embedding = await embeddings_generator.aembed_documents(
-                    [course["name"]]
-                )
+            embedding = embeddings_generator.embed_documents(
+                [course["name"]]
+            )
 
             # Insertar en la base de datos
             query = """
                 INSERT INTO mooc.courses (id, name, embedding)
-                VALUES ($1, $2, $3);
+                VALUES (%s, %s, %s);
             """
-            await pg_connection.execute_query_async(
+            pg_connection.execute_non_query(
                 query, (course["id"], course["name"], json.dumps(embedding[0]))
             )
 
@@ -48,8 +49,8 @@ async def main():
         print(f"Error: {error}")
     finally:
         # Cerrar conexión
-        await pg_connection.close_async()
+        pg_connection.close()
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
