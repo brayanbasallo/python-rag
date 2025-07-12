@@ -21,7 +21,7 @@ Este proyecto implementa un sistema de chat y búsqueda de cursos usando RAG (Re
 
 1. **Clona el repositorio**  
    ```bash
-   git remote add origin git@github.com:brayanbasallo/python-rag.git
+   git clone git@github.com:brayanbasallo/python-rag.git
    cd python-rag
    ```
 
