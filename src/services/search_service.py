@@ -42,6 +42,7 @@ class SearchService:
 
     def search(self, query: str) -> List[str]:
         embedding = self.get_ollama_embedding(query)
+        print(embedding)
         sql = (
             "SELECT name FROM mooc.courses "
             "ORDER BY embedding <=> %s "
