@@ -13,7 +13,7 @@ class ChatService:
     def __init__(self):
         self.search_service = SearchService()
         # Aquí podrías parametrizar el modelo y la URL de Ollama
-        self.ollama_model = "gemma3n:e4b"
+        self.ollama_model = "gemma3:4b"
         self.ollama_url = "http://localhost:11434/api/generate"
 
     def get_response(self, messages: str) -> str:

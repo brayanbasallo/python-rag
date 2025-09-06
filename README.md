@@ -53,7 +53,7 @@ Este proyecto implementa un sistema de chat y búsqueda de cursos usando RAG (Re
    ```bash
    ollama serve
    # Y que tengas el modelo necesario descargado, por ejemplo:
-   ollama pull gemma3n:e4b
+   ollama pull gemma3:4b
    # ollama pull nomic-embed-text:v1.5
    ```
 
