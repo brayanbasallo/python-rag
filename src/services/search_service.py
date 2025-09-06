@@ -23,7 +23,7 @@ class SearchService:
     def get_ollama_embedding(
         self,
         query: str,
-        model: str = "nomic-embed-text",
+        model: str = "nomic-embed-text:v1.5",
         base_url: str = "http://localhost:11434"
     ) -> List[float]:
         url = f"{base_url}/api/embeddings"

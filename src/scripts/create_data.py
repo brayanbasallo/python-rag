@@ -20,7 +20,7 @@ def main():
 
     # Crear generador de embeddings
     embeddings_generator = OllamaEmbeddings(
-        model="nomic-embed-text", base_url="http://localhost:11434"
+        model="nomic-embed-text:v1.5", base_url="http://localhost:11434"
     )
 
     try:
